@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  resources :cities
+  resources :product_categories
 end
