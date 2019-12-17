@@ -3,3 +3,4 @@
 * API Rails 
 * Banco Postgresql
 * Front React.js
+* Integração Heroku + Codeship
