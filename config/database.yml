@@ -16,7 +16,12 @@ development:
 
 test:
   <<: *default
-  database: api_test
+  adapter: postgresql
+  encoding: unicode
+  database: ddr7cg27n0ibp5
+  username: sdfdyjtuosegou
+  password: "adc035a0982ecdb03c13b0cf73f7b50d5b086f4902efec1621f98ba7dcba3e74"
+  host: ec2-174-129-33-186.compute-1.amazonaws.com
 
 production:
   <<: *default
