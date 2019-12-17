@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_17_034845) do
+ActiveRecord::Schema.define(version: 2019_12_17_132631) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,41 @@ ActiveRecord::Schema.define(version: 2019_12_17_034845) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["state_id"], name: "index_cities_on_state_id"
+  end
+
+  create_table "clients", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.bigint "city_id", null: false
+    t.string "phone"
+    t.string "email"
+    t.string "description"
+    t.string "type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["city_id"], name: "index_clients_on_city_id"
+  end
+
+  create_table "legal_people", force: :cascade do |t|
+    t.string "corporate_name"
+    t.string "cnpj"
+    t.string "contact"
+    t.string "state_registration"
+    t.bigint "client_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["client_id"], name: "index_legal_people_on_client_id"
+  end
+
+  create_table "physical_people", force: :cascade do |t|
+    t.string "gender"
+    t.string "cpf"
+    t.string "rg"
+    t.date "birth_date"
+    t.bigint "client_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["client_id"], name: "index_physical_people_on_client_id"
   end
 
   create_table "product_categories", force: :cascade do |t|
@@ -78,4 +113,7 @@ ActiveRecord::Schema.define(version: 2019_12_17_034845) do
   end
 
   add_foreign_key "cities", "states"
+  add_foreign_key "clients", "cities"
+  add_foreign_key "legal_people", "clients"
+  add_foreign_key "physical_people", "clients"
 end

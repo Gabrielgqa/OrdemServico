@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :physical_people
+  resources :home, only: :index
   mount_devise_token_auth_for 'User', at: 'auth'
+  resources :physical_people
   resources :legal_people
   resources :clients
   resources :products
